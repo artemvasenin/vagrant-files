@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+
+    config.vm.box = "debian/buster64"
+    
+    config.vm.network "public_network", bridge: "enp3s0"
+
+    config.vm.provision "shell", inline: "apt-get update && \
+        apt-get install -y \
+        git \
+        vim \
+        dpkg-dev \
+        debhelper \
+        golang-go \
+        rsync \
+        redis-server \
+        cron \
+        curl \
+        daemon \
+        dbconfig-common \
+        debconf \
+        openssh-client \
+        nginx \
+        postgresql \
+        dnsutils"
+
+    config.ssh.forward_agent = true
+
+end
